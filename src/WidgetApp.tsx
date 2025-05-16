@@ -10,7 +10,7 @@ export default function WidgetApp({ config }: AppProps) {
   return (
     <MemoryRouter>
       <Routes>
-        <Route path="/" element={<HomePage config={config} />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/vehicle" element={<VehicleList />} />
         <Route path="/vehicle/:id" element={<VehicleDetail />} />
         <Route path="/submit" element={<SubmitPage />} />
