@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client'
-import WidgetApp from './WidgetApp'
+import App from './App' // ✅ torna ad usare direttamente App
+import './index.css' // ✅ assicurati che venga incluso lo stile
 
 class FinanceWidget extends HTMLElement {
   constructor() {
@@ -17,6 +18,7 @@ class FinanceWidget extends HTMLElement {
     mount.id = 'root'
     this.shadowRoot.appendChild(mount)
 
+    // Inject style if needed (facoltativo)
     requestAnimationFrame(() => {
       const styles = Array.from(document.head.querySelectorAll('style'))
       const injectedStyle = styles.find((s) => s.textContent?.includes('._wrapper_'))
@@ -27,6 +29,7 @@ class FinanceWidget extends HTMLElement {
       }
     })
 
+    // Config
     let config = {
       lang: this.getAttribute('lang') || 'it',
       brand: this.getAttribute('brand') || 'default',
@@ -42,7 +45,7 @@ class FinanceWidget extends HTMLElement {
       }
     }
 
-    createRoot(mount).render(<WidgetApp config={config} />)
+    createRoot(mount).render(<App config={config} />)
   }
 }
 

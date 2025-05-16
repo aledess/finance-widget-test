@@ -1,6 +1,8 @@
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
-
-import Demo from './pages/Demo'
+import HomePage from './pages/Homepage'
+import VehicleList from './pages/VehicleList'
+import VehicleDetail from './pages/VehicleDetail'
+import SubmitPage from './pages/SubmitPage'
 
 export type AppProps = {
   config?: {
@@ -10,11 +12,15 @@ export type AppProps = {
   }
 }
 
-export default function App() {
+export default function App({ config }: AppProps) {
+  console.log('App', config)
   return (
     <MemoryRouter>
       <Routes>
-        <Route path="/" element={<Demo />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/vehicle" element={<VehicleList />} />
+        <Route path="/vehicle/:id" element={<VehicleDetail />} />
+        <Route path="/submit" element={<SubmitPage />} />
       </Routes>
     </MemoryRouter>
   )
