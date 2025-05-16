@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import App from './App'
+import WidgetApp from './WidgetApp'
 
 class FinanceWidget extends HTMLElement {
   constructor() {
@@ -8,9 +8,12 @@ class FinanceWidget extends HTMLElement {
   }
 
   connectedCallback() {
-    if (!this.shadowRoot || this.shadowRoot.querySelector('#root')) return
+    if (!this.shadowRoot) return
 
-    const mount = document.createElement('div')
+    let mount = this.shadowRoot.querySelector('#root')
+    if (mount) return
+
+    mount = document.createElement('div')
     mount.id = 'root'
     this.shadowRoot.appendChild(mount)
 
@@ -20,11 +23,26 @@ class FinanceWidget extends HTMLElement {
 
       if (injectedStyle && this.shadowRoot) {
         this.shadowRoot.prepend(injectedStyle.cloneNode(true))
-        injectedStyle.remove() // opzionale
+        injectedStyle.remove()
       }
     })
 
-    createRoot(mount).render(<App />)
+    let config = {
+      lang: this.getAttribute('lang') || 'it',
+      brand: this.getAttribute('brand') || 'default',
+      theme: this.getAttribute('theme') || 'light',
+    }
+
+    const configAttr = this.getAttribute('config')
+    if (configAttr) {
+      try {
+        config = { ...config, ...JSON.parse(configAttr) }
+      } catch (err) {
+        console.warn('[FinanceWidget] Invalid JSON in config:', err)
+      }
+    }
+
+    createRoot(mount).render(<WidgetApp config={config} />)
   }
 }
 
