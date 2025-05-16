@@ -10,16 +10,16 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/widget.tsx'),
       name: 'FinanceWidget',
-      fileName: () => 'widget.js', // evita [name].js
+      fileName: () => 'widget.js',
       formats: ['iife'],
     },
     rollupOptions: {
       output: {
-        entryFileNames: 'widget.js', // evita sovrascritture
+        entryFileNames: 'widget.js',
       },
     },
-    outDir: 'dist', // stesso outDir della build React
-    emptyOutDir: false, // ⚠️ non svuotare la cartella
+    outDir: 'dist', // stesso output dell'app
+    emptyOutDir: false, // NON svuotare, così non cancella index.html
   },
   define: {
     'process.env.NODE_ENV': '"production"',

@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'dist',
-    emptyOutDir: true,
+    outDir: 'dist', // stesso output del widget
+    emptyOutDir: true, // svuota solo quando parte la build principale
   },
 })

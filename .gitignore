@@ -7,18 +7,34 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependency directories
+node_modules/
 
-# Editor directories and files
+# Build output
+dist/
+dist-ssr/
+
+# Local env files
+*.local
+.env.local
+.env.*.local
+
+# System files
+.DS_Store
+
+# VSCode settings (allow extensions.json only)
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+
+# JetBrains IDE (WebStorm, PhpStorm, etc.)
+.idea/
+
+# Microsoft files
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Optional: embed preview HTML if generated dynamically
+/public/demo.html
