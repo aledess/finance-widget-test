@@ -1,11 +1,11 @@
 // vite.config.ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-
 export default defineConfig({
   plugins: [react()],
+  publicDir: 'public', // include tutto (demo + assets)
   build: {
-    outDir: 'dist', // stesso output del widget
-    emptyOutDir: true, // svuota solo quando parte la build principale
+    outDir: 'dist',
+    emptyOutDir: true,
   },
 })

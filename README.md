@@ -1,54 +1,37 @@
-# React + TypeScript + Vite
+# Finance Widget – React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Questo progetto fornisce un setup completo per creare un'app React moderna con Vite, TypeScript, e la possibilità di esportare un Web Component (`<finance-widget>`). È pensato per essere usato in due modalità:
 
-Currently, two official plugins are available:
+- 🧪 Ambiente di sviluppo (`develop`) → App React + Widget + pagina demo
+- 🚀 Ambiente di produzione (`master`) → Solo `widget.js` da embeddare
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📁 Struttura progetto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+.
+├── public/
+│ ├── assets/ # asset pubblici sempre copiati
+│ └── demo/ # file solo per sviluppo (es. demo.html)
+├── src/ # codice React/Widget
+├── vite.config.ts # build app React
+├── vite.widget.config.ts # build widget.js
+├── package.json
+├── .env # default locale
+├── .env.stage # usato da Vercel su develop
+├── .env.prod # usato da Vercel su master
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Scripts disponibili
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```json
+"scripts": {
+  "dev": "vite",                               // sviluppo locale
+  "preview": "vite preview",                   // anteprima post-build
+  "build": "vite build && vite build --config vite.widget.config.ts", // app + widget
+  "build:stage": "BUILD_MODE=stage vite build --config vite.widget.config.ts", // per stage app + widget
+  "build:prod": "BUILD_MODE=production vite build --config vite.widget.config.ts", // solo widget.js
+  "format": "prettier . --write"               // formattazione codice
+}
 ```
