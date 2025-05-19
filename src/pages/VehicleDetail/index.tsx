@@ -42,7 +42,7 @@ export default function VehicleDetail() {
           <p className="monthly">€ {data.monthlyPayment}/month</p>
 
           <Button>Request a quote</Button>
-          <Button variant="outline">Talk to an advisor</Button>
+          <Button variant="tertiary">Talk to an advisor</Button>
         </div>
       </div>
 
