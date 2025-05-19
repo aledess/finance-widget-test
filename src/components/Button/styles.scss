@@ -1,0 +1,42 @@
+/* src/components/Button/styles.scss */
+.btn {
+  font-family: var(--font-family);
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &--primary {
+    background-color: var(--primary-color);
+    color: #fff;
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--primary-color) 85%, black);
+    }
+  }
+
+  &--secondary {
+    background-color: var(--secondary-color);
+    color: #fff;
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--secondary-color) 85%, black);
+    }
+  }
+
+  &--tertiary {
+    background-color: var(--tertiary-color);
+    color: #fff;
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--tertiary-color) 85%, black);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

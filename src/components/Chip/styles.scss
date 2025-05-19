@@ -1,0 +1,12 @@
+.chip {
+  font-family: var(--font-family, 'Inter, sans-serif');
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  display: inline-block;
+
+  border: 1px solid var(--primary-color, #a0d7a2);
+  color: var(--primary-color, #a0d7a2);
+  background-color: color-mix(in srgb, var(--primary-color, #a0d7a2) 10%, transparent);
+}

@@ -1,24 +1,23 @@
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/Homepage'
-import VehicleList from './pages/VehicleList'
 import VehicleDetail from './pages/VehicleDetail'
 import SubmitPage from './pages/SubmitPage'
+import type { catalogItem } from './types/catalogItem'
 
 export type AppProps = {
   config?: {
     lang: string
     brand: string
-    theme: string
   }
+  catalog?: catalogItem[]
 }
 
-export default function App({ config }: AppProps) {
-  console.log('App', config)
+export default function App({ config, catalog }: AppProps) {
+  console.log('App', config, catalog)
   return (
     <MemoryRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/vehicle" element={<VehicleList />} />
+        <Route path="/" element={<HomePage initialCatalog={catalog ?? []} />} />
         <Route path="/vehicle/:id" element={<VehicleDetail />} />
         <Route path="/submit" element={<SubmitPage />} />
       </Routes>

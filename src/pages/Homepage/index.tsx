@@ -1,55 +1,64 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import styles from './styles.module.scss'
+import { useEffect, useRef, useState } from 'react'
+import VehicleCard from '../../components/VehicleCard'
+import './styles.scss'
+import PageHeader from '../../components/PageHeader'
 
-export default function Home() {
-  const [selected, setSelected] = useState<string | null>(null)
-  const navigate = useNavigate()
+const CHUNK_SIZE = 6
 
-  const handleNext = () => {
-    if (selected) {
-      navigate('/vehicle')
-    }
-  }
+type HomePageProps = {
+  initialCatalog: any[] // oppure `Vehicle[]` se usi tipi
+}
+
+export default function HomePage({ initialCatalog }: HomePageProps) {
+  const [visibleData, setVisibleData] = useState(() => initialCatalog.slice(0, CHUNK_SIZE))
+  const [page, setPage] = useState(1)
+  const loaderRef = useRef<HTMLDivElement | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsLoading(true)
+          setTimeout(() => {
+            const nextPage = page + 1
+            const nextChunk = initialCatalog.slice(0, nextPage * CHUNK_SIZE)
+
+            if (nextChunk.length > visibleData.length) {
+              setVisibleData(nextChunk)
+              setPage(nextPage)
+            }
+
+            setIsLoading(false)
+          }, 500) // simulate API delay
+        }
+      },
+      { threshold: 1 },
+    )
+
+    if (loaderRef.current) observer.observe(loaderRef.current)
+    return () => observer.disconnect()
+  }, [page, visibleData, initialCatalog])
 
   return (
-    <section className={styles.wrapper}>
-      <h1 className={styles.title}>Simula il tuo finanziamento</h1>
-      <p className={styles.subtitle}>Seleziona il tuo profilo per iniziare la simulazione:</p>
+    <div className="home-container">
+      <PageHeader showBack={false} breadcrumbs={[{ label: 'Home' }]} />
 
-      <div className={styles.cardGrid}>
-        <label className={styles.card}>
-          <input
-            type="radio"
-            name="profile"
-            value="particulier"
-            checked={selected === 'particulier'}
-            onChange={() => setSelected('particulier')}
-          />
-          <div className={styles.cardContent}>
-            <h2>Particulier</h2>
-            <p>Per clienti privati e uso personale.</p>
-          </div>
-        </label>
+      <h2 className="home-title">Available Vehicles</h2>
 
-        <label className={styles.card}>
-          <input
-            type="radio"
-            name="profile"
-            value="business"
-            checked={selected === 'business'}
-            onChange={() => setSelected('business')}
-          />
-          <div className={styles.cardContent}>
-            <h2>Business</h2>
-            <p>Per aziende, liberi professionisti e flotte.</p>
-          </div>
-        </label>
+      {visibleData.length === 0 ? (
+        <p>No vehicles available.</p>
+      ) : (
+        <div className="vehicle-grid">
+          {visibleData.map((item) => (
+            <VehicleCard key={item.id} {...item} imageUrl={item.imageArray[0]?.imageUrl || ''} />
+          ))}
+        </div>
+      )}
+
+      <div ref={loaderRef} className="loader">
+        {isLoading && <div className="spinner" />}
       </div>
-
-      <button className={styles.button} onClick={handleNext} disabled={!selected}>
-        Avanti
-      </button>
-    </section>
+    </div>
   )
 }

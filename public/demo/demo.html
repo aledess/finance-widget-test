@@ -2,29 +2,80 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <title>Test Widget</title>
+    <title>Test Widget Embed</title>
     <script src="/widget.js"></script>
     <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #f6f7f9;
+      }
+
+      .header {
+        height: 60px;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+        font-weight: bold;
+        color: #555;
+      }
+
+      .container {
+        display: flex;
+        min-height: calc(100vh - 60px);
+      }
+
+      .sidebar {
+        width: 220px;
+        background-color: #e0e0e0;
+        padding: 1.5rem;
+        box-shadow: inset -1px 0 0 #ccc;
+      }
+
+      .sidebar::before {
+        content: '🔍 Filters';
+        display: block;
+        margin-bottom: 1rem;
+        color: #444;
+        font-weight: 600;
+      }
+
+      .widget-container {
+        flex: 1;
+        padding: 2rem;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
       finance-widget {
         display: block;
-        border: 2px dashed #0044cc;
-        padding: 2rem;
         background: white;
-        max-width: 600px;
-        margin: 2rem auto;
-      }
-      h2 {
-        text-align: center;
-        font-family: sans-serif;
-        color: #333;
+        width: 100%;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+        border-radius: 0.5rem;
       }
     </style>
   </head>
-  <body style="background-color: #f2f2f2">
-    <main>
-      <h2>Preview embed</h2>
+  <body>
+    <div class="header">🚗 Header</div>
+    <div class="container">
+      <aside class="sidebar">
+        <div style="height: 20px; background: #ccc; margin-bottom: 1rem; border-radius: 4px"></div>
+        <div style="height: 20px; background: #ccc; margin-bottom: 1rem; border-radius: 4px"></div>
+        <div style="height: 20px; background: #ccc; margin-bottom: 1rem; border-radius: 4px"></div>
+      </aside>
 
-      <finance-widget config='{"lang":"fr","brand":"peugeot","theme":"dark"}'></finance-widget>
-    </main>
+      <main class="widget-container">
+        <finance-widget
+          config='{"lang":"it","brand":"fiat","theme":"light"}'
+          catalog='[{"id":"1","make":"Volkswagen","model":"Golf","year":2022,"price":21900,"mileage":12000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33450.jpg"}],"fuelType":"Petrol","transmission":"Manual","monthlyPayment":289,"duration":36,"mileagePerYear":10000,"order":1},{"id":"2","make":"Peugeot","model":"208","year":2021,"price":18900,"mileage":15000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33451.jpg"}],"fuelType":"Diesel","transmission":"Automatic","monthlyPayment":259,"duration":36,"mileagePerYear":10000,"order":2},{"id":"3","make":"Fiat","model":"500","year":2020,"price":16900,"mileage":18000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33452.jpg"}],"fuelType":"Hybrid","transmission":"Manual","monthlyPayment":219,"duration":36,"mileagePerYear":10000,"order":3},{"id":"4","make":"BMW","model":"X1","year":2023,"price":30900,"mileage":8000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33453.jpg"}],"fuelType":"Diesel","transmission":"Automatic","monthlyPayment":399,"duration":36,"mileagePerYear":15000,"order":4},{"id":"5","make":"Tesla","model":"Model 3","year":2023,"price":42900,"mileage":5000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33454.jpg"}],"fuelType":"Electric","transmission":"Automatic","monthlyPayment":499,"duration":36,"mileagePerYear":20000,"order":5},{"id":"6","make":"Volkswagen","model":"T-Roc","year":2022,"price":25900,"mileage":10000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33455.jpg"}],"fuelType":"Petrol","transmission":"Manual","monthlyPayment":309,"duration":36,"mileagePerYear":12000,"order":6},{"id":"7","make":"Peugeot","model":"3008","year":2021,"price":28900,"mileage":13000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33456.jpg"}],"fuelType":"Hybrid","transmission":"Automatic","monthlyPayment":349,"duration":36,"mileagePerYear":15000,"order":7},{"id":"8","make":"Fiat","model":"Panda","year":2020,"price":13900,"mileage":20000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33457.jpg"}],"fuelType":"Petrol","transmission":"Manual","monthlyPayment":179,"duration":36,"mileagePerYear":10000,"order":8},{"id":"9","make":"BMW","model":"Series 1","year":2022,"price":27900,"mileage":9000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33458.jpg"}],"fuelType":"Diesel","transmission":"Manual","monthlyPayment":359,"duration":36,"mileagePerYear":12000,"order":9},{"id":"10","make":"Tesla","model":"Model Y","year":2023,"price":47900,"mileage":3000,"imageArray":[{"imageUrl":"https://carsbase.com/storage/photo/8/33459.jpg"}],"fuelType":"Electric","transmission":"Automatic","monthlyPayment":549,"duration":36,"mileagePerYear":20000,"order":10}]'
+        ></finance-widget>
+      </main>
+    </div>
   </body>
 </html>

@@ -1,13 +1,13 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
-import './index.css'
+import './styles/main-styles.scss'
+import { mockCatalog } from './mock/catalog'
 
-// ✅ Se NON è in un Web Component, montiamo App con una config mock
+// ✅ Se NON è in un Web Component, montiamo App con una config + catalog mock
 const mount = document.getElementById('root')
 
 if (mount) {
-  // fallback config solo per preview diretta (dev o Vercel)
   const devConfig = {
     lang: 'it',
     brand: 'fiat',
@@ -16,7 +16,7 @@ if (mount) {
 
   createRoot(mount).render(
     <React.StrictMode>
-      <App config={devConfig} />
+      <App config={devConfig} catalog={mockCatalog} />
     </React.StrictMode>,
   )
 }

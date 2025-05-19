@@ -9,9 +9,12 @@
     "build": "vite build && vite build --config vite.widget.config.ts",
     "build:stage": "BUILD_MODE=stage vite build --config vite.widget.config.ts",
     "build:prod": "BUILD_MODE=production vite build --config vite.widget.config.ts",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "export:mock": "node scripts/exportMock.js"
+
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^6.30.0"

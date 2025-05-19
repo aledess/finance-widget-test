@@ -1,3 +1,21 @@
-$color-primary: #0044cc;
-$color-bg: red;
-$font-body: 'Helvetica Neue', sans-serif;
+@use 'sass:map';
+
+// Palette colore base
+$colors: (
+  primary: #a0d7a2,
+  secondary: #308276,
+  tertiary: #e30071,
+  font: 'Inter, sans-serif',
+);
+
+// Esporti la mappa per usarla nei componenti SCSS se serve
+$theme: $colors;
+
+// Inietti le CSS variables nel root (dev) e :host (widget)
+:root,
+:host {
+  --primary-color: #{map.get($colors, primary)};
+  --secondary-color: #{map.get($colors, secondary)};
+  --tertiary-color: #{map.get($colors, tertiary)};
+  --font-family: #{map.get($colors, font)};
+}

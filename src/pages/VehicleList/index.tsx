@@ -1,19 +1,55 @@
-import { Link, useNavigate } from 'react-router-dom'
-export default function VehicleList() {
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './styles.scss'
+
+export default function Home() {
+  const [selected, setSelected] = useState<string | null>(null)
   const navigate = useNavigate()
 
+  const handleNext = () => {
+    if (selected) {
+      navigate('/vehicle')
+    }
+  }
+
   return (
-    <div>
-      <h2>Veicoli disponibili</h2>
-      <ul>
-        <li>
-          <Link to="/vehicle/1">Veicolo 1</Link>
-        </li>
-        <li>
-          <Link to="/vehicle/2">Veicolo 2</Link>
-        </li>
-      </ul>
-      <button onClick={() => navigate(-1)}>Indietro</button>
-    </div>
+    <section className="wrapper">
+      <h1 className="title">Simula il tuo finanziamento</h1>
+      <p className="subtitle">Seleziona il tuo profilo per iniziare la simulazione:</p>
+
+      <div className="card-grid">
+        <label className="card">
+          <input
+            type="radio"
+            name="profile"
+            value="particulier"
+            checked={selected === 'particulier'}
+            onChange={() => setSelected('particulier')}
+          />
+          <div className="card-content">
+            <h2>Particulier</h2>
+            <p>Per clienti privati e uso personale.</p>
+          </div>
+        </label>
+
+        <label className="card">
+          <input
+            type="radio"
+            name="profile"
+            value="business"
+            checked={selected === 'business'}
+            onChange={() => setSelected('business')}
+          />
+          <div className="card-content">
+            <h2>Business</h2>
+            <p>Per aziende, liberi professionisti e flotte.</p>
+          </div>
+        </label>
+      </div>
+
+      <button className="button" onClick={handleNext} disabled={!selected}>
+        Avanti
+      </button>
+    </section>
   )
 }
