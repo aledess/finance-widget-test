@@ -8,12 +8,12 @@ export type AppProps = {
   config?: {
     lang: string
     brand: string
+    theme?: string
   }
   catalog?: catalogItem[]
 }
 
 export default function App({ config, catalog }: AppProps) {
-  console.log('App', config, catalog)
   return (
     <MemoryRouter>
       <Routes>
