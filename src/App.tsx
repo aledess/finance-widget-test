@@ -3,6 +3,7 @@ import HomePage from './pages/Homepage'
 import VehicleDetail from './pages/VehicleDetail'
 import SubmitPage from './pages/SubmitPage'
 import type { catalogItem } from './types/catalogItem'
+import ProfilePage from './pages/ProfilePage'
 
 export type AppProps = {
   config?: {
@@ -18,7 +19,8 @@ export default function App({ config, catalog }: AppProps) {
     <MemoryRouter>
       <Routes>
         <Route path="/" element={<HomePage initialCatalog={catalog ?? []} />} />
-        <Route path="/vehicle/:id" element={<VehicleDetail />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/vehicle-detail" element={<VehicleDetail />} />
         <Route path="/submit" element={<SubmitPage />} />
       </Routes>
     </MemoryRouter>

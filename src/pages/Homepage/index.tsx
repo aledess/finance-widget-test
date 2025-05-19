@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import VehicleCard from '../../components/VehicleCard'
 import './styles.scss'
 import PageHeader from '../../components/PageHeader'
+import { useNavigate } from 'react-router-dom'
 
 const CHUNK_SIZE = 6
 
@@ -14,6 +15,7 @@ export default function HomePage({ initialCatalog }: HomePageProps) {
   const [page, setPage] = useState(1)
   const loaderRef = useRef<HTMLDivElement | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,7 +53,14 @@ export default function HomePage({ initialCatalog }: HomePageProps) {
       ) : (
         <div className="vehicle-grid">
           {visibleData.map((item) => (
-            <VehicleCard key={item.id} {...item} imageUrl={item.imageArray[0]?.imageUrl || ''} />
+            <VehicleCard
+              key={item.id}
+              {...item}
+              imageUrl={item.imageArray[0]?.imageUrl || ''}
+              onSimulateClick={(vehicle) => {
+                navigate('/profile', { state: vehicle })
+              }}
+            />
           ))}
         </div>
       )}

@@ -18,6 +18,7 @@ type VehicleCardProps = {
   mileagePerYear?: number
   extraTags?: string[]
   order?: number
+  onSimulateClick?: (vehicle: VehicleCardProps) => void
 }
 
 export default function VehicleCard(props: VehicleCardProps) {
@@ -26,7 +27,11 @@ export default function VehicleCard(props: VehicleCardProps) {
   const navigate = useNavigate()
 
   const handleSimulate = () => {
-    navigate(`/vehicle/${id}`, { state: props })
+    if (props.onSimulateClick) {
+      props.onSimulateClick(props)
+    } else {
+      navigate(`/vehicle/${id}`, { state: props })
+    }
   }
 
   return (

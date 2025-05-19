@@ -14,7 +14,11 @@ export default function VehicleDetail() {
   return (
     <div className="vehicle-detail">
       <PageHeader
-        breadcrumbs={[{ label: 'Home', path: '/' }, { label: `${data.make} ${data.model}` }]}
+        breadcrumbs={[
+          { label: 'Home', path: '/' },
+          { label: 'Profile', path: '/profile' },
+          { label: `${data.make} ${data.model} (${data.year})` },
+        ]}
       />
 
       <h1 className="vehicle-detail__title">
