@@ -20,9 +20,9 @@ if (mount) {
   }
 
   const styleConfig: StyleConfig | undefined = {
-    primaryColor: 'yellow',
-    secondaryColor: 'yellow',
-    tertiaryColor: 'yellow',
+    // primaryColor: 'yellow',
+    // secondaryColor: 'yellow',
+    // tertiaryColor: 'yellow',
   }
 
   if (styleConfig) {
