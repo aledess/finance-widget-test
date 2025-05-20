@@ -106,9 +106,7 @@ class FinanceWidget extends HTMLElement {
     if (!this.mount || this.isRendered) return
     this.isRendered = true
 
-    createRoot(this.mount).render(
-      <App config={this.config} catalog={this.catalog} styleConfig={this.styleConfig} />,
-    )
+    createRoot(this.mount).render(<App config={this.config} catalog={this.catalog} />)
   }
 }
 

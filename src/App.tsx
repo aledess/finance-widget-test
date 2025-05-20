@@ -1,21 +1,20 @@
+import React from 'react'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/Homepage'
 import VehicleDetail from './pages/VehicleDetail'
 import SubmitPage from './pages/SubmitPage'
-import type { catalogItem } from './types/catalogItem'
 import ProfilePage from './pages/ProfilePage'
+import type { catalogItem } from './types/catalogItem'
 
 export type AppProps = {
-  config?: {
-    lang: string
-  }
+  config?: { lang: string }
   catalog?: catalogItem[]
-  styleConfig?: any
 }
 
-export default function App({ config, catalog, styleConfig }: AppProps) {
+export default function App({ config, catalog }: AppProps) {
+  console.log('-----', config, catalog)
   return (
-    <MemoryRouter>
+    <MemoryRouter initialEntries={['/']}>
       <Routes>
         <Route path="/" element={<HomePage initialCatalog={catalog ?? []} />} />
         <Route path="/profile" element={<ProfilePage />} />
