@@ -1,12 +1,12 @@
 import { createRoot } from 'react-dom/client'
 import App from './App'
-// @ts-ignore
 import mainStyles from './styles/main-styles.scss?inline'
 
 class FinanceWidget extends HTMLElement {
   private mount: HTMLDivElement | null = null
   private config: any = {}
-  private catalog: any = undefined
+  private catalog: any = {}
+  private styleConfig: any = {}
   private isRendered = false
 
   constructor() {
@@ -26,23 +26,10 @@ class FinanceWidget extends HTMLElement {
     this.shadowRoot.appendChild(this.mount)
 
     this.readAttributes()
+    this.injectCSSVariables()
+    this.injectGlobalStyles()
 
-    const globalStyle = document.createElement('style')
-    globalStyle.textContent = mainStyles
-    this.shadowRoot.prepend(globalStyle)
-
-    const vars = document.createElement('style')
-    vars.textContent = `
-      :host {
-        --primary-color: ${this.config.primaryColor || '#A0D7A2'};
-        --secondary-color: ${this.config.secondaryColor || '#308276'};
-        --tertiary-color: ${this.config.tertiaryColor || '#E30071'};
-        --font-family: ${this.config.font || 'Inter, sans-serif'};
-      }
-    `
-    this.shadowRoot.prepend(vars)
-
-    // renderApp solo se catalog non è previsto o già presente
+    // Se il catalog è già disponibile al mount, renderizza subito
     if (!this.hasAttribute('catalog') || this.catalog) {
       this.renderApp()
     }
@@ -62,9 +49,7 @@ class FinanceWidget extends HTMLElement {
   private readAttributes() {
     // Config base
     this.config = {
-      lang: this.getAttribute('lang') || 'it',
-      brand: this.getAttribute('brand') || 'default',
-      theme: this.getAttribute('theme') || 'light',
+      lang: this.getAttribute('lang') || 'fr',
     }
 
     // Config JSON avanzato
@@ -77,33 +62,53 @@ class FinanceWidget extends HTMLElement {
       }
     }
 
-    // Style
-    const styleAttr = this.getAttribute('style')
+    // Style config
+    const styleAttr = this.getAttribute('styleConfig')
     if (styleAttr) {
       try {
-        const styleConfig = JSON.parse(styleAttr)
-        this.config = { ...this.config, ...styleConfig }
+        this.styleConfig = JSON.parse(styleAttr)
       } catch (err) {
-        console.warn('[FinanceWidget] Invalid JSON in style attribute:', err)
+        console.warn('[FinanceWidget] Invalid JSON in styleConfig:', err)
       }
     }
 
-    // Catalog statico (se già presente all'inizio)
+    // Catalog (iniziale)
     const catalogAttr = this.getAttribute('catalog')
     if (catalogAttr) {
       try {
         this.catalog = JSON.parse(catalogAttr)
       } catch (err) {
-        console.warn('[FinanceWidget] Invalid JSON in catalog attribute:', err)
+        console.warn('[FinanceWidget] Invalid JSON in catalog:', err)
       }
     }
+  }
+
+  private injectGlobalStyles() {
+    const style = document.createElement('style')
+    style.textContent = mainStyles
+    this.shadowRoot?.prepend(style)
+  }
+
+  private injectCSSVariables() {
+    const vars = document.createElement('style')
+    vars.textContent = `
+    :host {
+      --primary-color: ${this.styleConfig.primaryColor || '#A0D7A2'} !important;
+      --secondary-color: ${this.styleConfig.secondaryColor || '#308276'} !important;
+      --tertiary-color: ${this.styleConfig.tertiaryColor || '#E30071'} !important;
+      --font-family: ${this.styleConfig.fontFamily || 'Inter, sans-serif'} !important;
+    }
+  `
+    this.shadowRoot?.prepend(vars)
   }
 
   private renderApp() {
     if (!this.mount || this.isRendered) return
     this.isRendered = true
 
-    createRoot(this.mount).render(<App config={this.config} catalog={this.catalog} />)
+    createRoot(this.mount).render(
+      <App config={this.config} catalog={this.catalog} styleConfig={this.styleConfig} />,
+    )
   }
 }
 

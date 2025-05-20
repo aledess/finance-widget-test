@@ -10,13 +10,17 @@ const mount = document.getElementById('root')
 if (mount) {
   const devConfig = {
     lang: 'it',
-    brand: 'fiat',
-    theme: 'light',
+  }
+
+  const styleConfig = {
+    primaryColor: 'red',
+    secondaryColor: 'red',
+    tertiaryColor: 'red',
   }
 
   createRoot(mount).render(
     <React.StrictMode>
-      <App config={devConfig} catalog={mockCatalog} />
+      <App config={devConfig} catalog={mockCatalog} styleConfig={styleConfig} />
     </React.StrictMode>,
   )
 }

@@ -8,13 +8,12 @@ import ProfilePage from './pages/ProfilePage'
 export type AppProps = {
   config?: {
     lang: string
-    brand: string
-    theme?: string
   }
   catalog?: catalogItem[]
+  styleConfig?: any
 }
 
-export default function App({ config, catalog }: AppProps) {
+export default function App({ config, catalog, styleConfig }: AppProps) {
   return (
     <MemoryRouter>
       <Routes>
