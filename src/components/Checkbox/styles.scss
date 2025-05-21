@@ -1,0 +1,44 @@
+/* src/components/CustomCheckbox/styles.module.scss */
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+
+  input {
+    display: none;
+  }
+
+  &__box {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.25rem;
+    position: relative;
+    background: white;
+    transition:
+      background 0.2s,
+      border-color 0.2s;
+  }
+
+  &.checked &__box {
+    background: var(--primary-color);
+  }
+
+  &.checked &__box::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  &__label {
+    user-select: none;
+  }
+}

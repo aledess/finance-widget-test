@@ -1,0 +1,53 @@
+/* src/components/SliderInput/styles.module.scss */
+.slider-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  &__label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  &__control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    input[type='range'] {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 6px;
+      border-radius: 5px;
+      background: #e0e0e0;
+      outline: none;
+      transition: background 0.3s ease;
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        border: 2px solid white;
+        box-shadow: 0 0 0 2px var(--primary-color);
+      }
+
+      &::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        border: 2px solid white;
+        box-shadow: 0 0 0 2px var(--primary-color);
+      }
+    }
+  }
+}

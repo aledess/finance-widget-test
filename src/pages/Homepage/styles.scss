@@ -21,11 +21,11 @@
   row-gap: 1.5rem; // mantieni respiro verticale
   align-items: stretch;
 
-  @media (min-width: 600px) {
+  @media (min-width: 700px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 1000px) {
     grid-template-columns: repeat(3, 1fr);
   }
 

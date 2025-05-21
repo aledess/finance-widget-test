@@ -58,7 +58,7 @@ export default function HomePage({ initialCatalog }: HomePageProps) {
               {...item}
               imageUrl={item.imageArray[0]?.imageUrl || ''}
               onSimulateClick={(vehicle) => {
-                navigate('/profile', { state: vehicle })
+                navigate('/financement', { state: vehicle })
               }}
             />
           ))}

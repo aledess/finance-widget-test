@@ -6,8 +6,12 @@
 @use '../components/Chip/styles.scss' as *;
 @use '../components/VehicleCard/styles.scss' as *;
 @use '../components/PageHeader/styles.scss' as *;
+@use '../components/Accordion/styles.scss' as *;
+@use '../components/FinancingOffer/styles.scss' as *;
+@use '../components/FinancingTabs/styles.scss' as *;
+@use '../components/SliderInput/styles.scss' as *;
+@use '../components/Checkbox/styles.scss' as *;
 
 // Page styles
 @use '../pages/Homepage/styles.scss' as *;
-@use '../pages/ProfilePage/styles.scss' as *;
-@use '../pages/VehicleDetail/styles.scss' as *;
+@use '../pages/FinancementPage/styles.scss' as *;

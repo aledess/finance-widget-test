@@ -1,0 +1,34 @@
+/* src/components/Accordion/styles.module.scss */
+.accordion {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: white;
+
+  &__header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    cursor: default;
+  }
+
+  &__header-content {
+    flex: 1;
+  }
+
+  &__toggle {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-left: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    padding: 1.5rem;
+    border-top: 2px solid var(--primary-color);
+  }
+}

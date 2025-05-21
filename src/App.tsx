@@ -1,9 +1,8 @@
-import React from 'react'
+// src/App.tsx
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/Homepage'
-import VehicleDetail from './pages/VehicleDetail'
 import SubmitPage from './pages/SubmitPage'
-import ProfilePage from './pages/ProfilePage'
+import FinancementPage from './pages/FinancementPage' // ✅ nuova pagina
 import type { catalogItem } from './types/catalogItem'
 
 export type AppProps = {
@@ -17,9 +16,8 @@ export default function App({ config, catalog }: AppProps) {
     <MemoryRouter initialEntries={['/']}>
       <Routes>
         <Route path="/" element={<HomePage initialCatalog={catalog ?? []} />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/vehicle-detail" element={<VehicleDetail />} />
         <Route path="/submit" element={<SubmitPage />} />
+        <Route path="/financement" element={<FinancementPage />} /> {/* ✅ nuova route */}
       </Routes>
     </MemoryRouter>
   )

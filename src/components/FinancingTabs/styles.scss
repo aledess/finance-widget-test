@@ -1,0 +1,50 @@
+/* src/components/FinancingTabs/styles.module.scss */
+.financing-tabs {
+  &__nav {
+    display: flex;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  &__tab {
+    flex: 1;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    border: 1px solid var(--primary-color);
+    background: white;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+
+    &.active {
+      background-color: var(--tertiary-color);
+      color: white;
+      border: none;
+    }
+
+    .title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0.75;
+    }
+  }
+
+  &__content {
+    margin-top: 1.5rem;
+  }
+}
