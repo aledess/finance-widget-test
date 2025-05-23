@@ -8,6 +8,7 @@ import OfferInfoBox from '../../components/Financing/OfferInfoBox'
 import OfferOptions from '../../components/Financing/OfferOptions'
 import OfferFooterActions from '../../components/Financing/OfferFooterActions'
 import OfferDescriptionBox from '../../components/Financing/OfferDescriptionBox'
+import Modal from '../../components/Modal'
 
 import './styles.scss'
 const RESET_ALL = true
@@ -27,6 +28,7 @@ export default function FinancementPage() {
   const [selectedProfile, setSelectedProfile] = useState<'private' | 'company' | null>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+  const [showModal, setShowModal] = useState(false)
 
   const [offersPrivate, setOffersPrivate] = useState<Offer[]>([
     {
@@ -203,7 +205,14 @@ export default function FinancementPage() {
             </div>
 
             <div className="offer-box">
-              <OfferInfoBox {...currentOffer} />
+              <OfferInfoBox {...currentOffer} onInfoClick={() => setShowModal(true)} />
+              <Modal
+                open={showModal}
+                onClose={() => setShowModal(false)}
+                title="Détails de l'offre"
+              >
+                <p>Contenu della modale con dettagli dell’offerta...</p>
+              </Modal>
             </div>
           </div>
 

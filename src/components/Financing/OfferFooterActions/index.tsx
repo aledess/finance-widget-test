@@ -1,4 +1,5 @@
 import './styles.scss'
+import Button from '../../Button' // importa il tuo Button
 
 type Props = {
   onClick?: () => void
@@ -7,9 +8,9 @@ type Props = {
 export default function OfferFooterActions({ onClick }: Props) {
   return (
     <div className="offer-footer-actions">
-      <button className="cta-offer" onClick={onClick}>
+      <Button variant="primary" onClick={onClick}>
         RECEVOIR L'OFFRE
-      </button>
+      </Button>
     </div>
   )
 }

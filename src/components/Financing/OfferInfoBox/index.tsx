@@ -7,18 +7,16 @@ export type OfferInfoBoxProps = {
   price: number
   details: string
   redemptionValue?: number
+  onInfoClick?: () => void
 }
 
 export default function OfferInfoBox({
   title,
   price,
   details,
+  onInfoClick,
   redemptionValue,
 }: OfferInfoBoxProps) {
-  const handleInfoClick = () => {
-    alert('Modale informativa (sostituibile con componente)')
-  }
-
   const handleRecalculate = () => {
     console.log('Récalculer clicked')
   }
@@ -28,7 +26,7 @@ export default function OfferInfoBox({
       <div className="offer-info-main">
         <div className="offer-title">
           <h3>{title}</h3>
-          <button className="info-button" onClick={handleInfoClick} title="Info">
+          <button className="info-button" onClick={onInfoClick} title="Info">
             <Info size={18} />
           </button>
         </div>
