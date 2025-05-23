@@ -1,0 +1,49 @@
+.offer-options-box {
+  flex: 1;
+  background: #fafafa;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+
+  .options-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .options-actions {
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          stroke: var(--primary-color);
+        }
+      }
+    }
+  }
+
+  .options-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

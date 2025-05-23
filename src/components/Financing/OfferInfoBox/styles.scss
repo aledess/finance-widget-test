@@ -1,0 +1,87 @@
+.offer-info-box {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 5rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 1rem;
+  background-color: color-mix(in srgb, var(--primary-color) 5%, white);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+
+  .offer-info-main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .offer-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--primary-color);
+    }
+
+    .info-button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+
+      svg {
+        stroke: var(--primary-color);
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .offer-price {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 0.75rem 0 0.25rem;
+
+    &-sub {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #444;
+      margin-left: 0.4rem;
+    }
+  }
+
+  .offer-details {
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 1rem;
+  }
+
+  .offer-redemption {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #222;
+    margin-top: 0.75rem;
+  }
+
+  .offer-recalc {
+    align-self: flex-end;
+
+    button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      background-color: var(--secondary-color);
+      color: white;
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--secondary-color) 85%, black);
+      }
+    }
+  }
+}

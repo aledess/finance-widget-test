@@ -7,7 +7,6 @@
 @use '../components/VehicleCard/styles.scss' as *;
 @use '../components/PageHeader/styles.scss' as *;
 @use '../components/Accordion/styles.scss' as *;
-@use '../components/FinancingOffer/styles.scss' as *;
 @use '../components/FinancingTabs/styles.scss' as *;
 @use '../components/SliderInput/styles.scss' as *;
 @use '../components/Checkbox/styles.scss' as *;
@@ -15,3 +14,10 @@
 // Page styles
 @use '../pages/Homepage/styles.scss' as *;
 @use '../pages/FinancementPage/styles.scss' as *;
+
+// Modular components
+@use '../components/Financing/SliderPanel/styles.scss' as *;
+@use '../components/Financing/OfferInfoBox/styles.scss' as *;
+@use '../components/Financing/OfferOptions/styles.scss' as *;
+@use '../components/Financing/OfferFooterActions/styles.scss' as *;
+@use '../components/Financing/OfferDescriptionBox/styles.scss' as *;

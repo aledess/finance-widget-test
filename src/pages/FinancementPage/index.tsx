@@ -1,45 +1,64 @@
 // src/pages/FinancementPage/index.tsx
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { UserRound, Building2 } from 'lucide-react'
 import PageHeader from '../../components/PageHeader'
-import Accordion from '../../components/Accordion'
-import type { AccordionRef } from '../../components/Accordion/types'
-import './styles.scss'
 import FinancingTabs from '../../components/FinancingTabs'
-import SliderInput from '../../components/SliderInput'
-import FinancingOffer from '../../components/FinancingOffer'
+import SliderPanel from '../../components/Financing/SliderPanel'
+import OfferInfoBox from '../../components/Financing/OfferInfoBox'
+import OfferOptions from '../../components/Financing/OfferOptions'
+import OfferFooterActions from '../../components/Financing/OfferFooterActions'
+import OfferDescriptionBox from '../../components/Financing/OfferDescriptionBox'
+
+import './styles.scss'
+const RESET_ALL = true
+
+type Offer = {
+  title: string
+  price: number
+  details: string
+  options: string[]
+  redemptionValue?: number
+  apport: number
+  duree: number
+  kmAn: number
+}
 
 export default function FinancementPage() {
   const [selectedProfile, setSelectedProfile] = useState<'private' | 'company' | null>(null)
-  const accordionRef = useRef<AccordionRef>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([])
 
-  const [apport, setApport] = useState(5000)
-  const [duree, setDuree] = useState(36)
-  const [kmAn, setKmAn] = useState(10000)
-
-  const offersPrivate = [
+  const [offersPrivate, setOffersPrivate] = useState<Offer[]>([
     {
       title: 'Crédit Start',
       price: 299,
       details: 'Le prêt auto particulier',
       options: ['Extension de garantie', 'Maintenance'],
+      apport: 5000,
+      duree: 36,
+      kmAn: 10000,
     },
     {
       title: 'Crédit bail',
       price: 311,
       details: 'Le prêt auto particulier',
       options: ['Extension de garantie', 'Maintenance'],
+      apport: 5000,
+      duree: 36,
+      kmAn: 10000,
     },
     {
       title: 'Location Liberté',
       price: 345,
       details: 'Le prêt auto particulier',
       options: ['Extension de garantie', 'Maintenance'],
+      apport: 5000,
+      duree: 36,
+      kmAn: 10000,
     },
-  ]
+  ])
 
-  const offersCompany = [
+  const [offersCompany, setOffersCompany] = useState<Offer[]>([
     {
       title: 'Crédit bail Pro',
       price: 997,
@@ -51,6 +70,9 @@ export default function FinancementPage() {
         'Extension de garantie',
         'Maintenance',
       ],
+      apport: 5000,
+      duree: 36,
+      kmAn: 10000,
     },
     {
       title: 'Crédit Start Pro',
@@ -62,21 +84,63 @@ export default function FinancementPage() {
         'Extension de garantie',
         'Maintenance',
       ],
+      apport: 5000,
+      duree: 36,
+      kmAn: 10000,
     },
-  ]
+  ])
 
-  const offersToShow = selectedProfile === 'company' ? offersCompany : offersPrivate
+  const offers = selectedProfile === 'company' ? offersCompany : offersPrivate
+  const setOffers = selectedProfile === 'company' ? setOffersCompany : setOffersPrivate
+  const currentOffer = offers[activeIndex]
+  const currentOptions = currentOffer?.options || []
 
   const handleProfileSelect = (profile: 'private' | 'company') => {
     setSelectedProfile(profile)
-    setActiveIndex(0) // reset index when profile changes
+    setActiveIndex(0)
+    setSelectedOptions([])
   }
 
-  useEffect(() => {
-    if (selectedProfile && accordionRef.current) {
-      accordionRef.current.open()
-    }
-  }, [selectedProfile])
+  const handleReset = () => {
+    setOffers((prev) => {
+      const updated = [...prev]
+
+      if (RESET_ALL) {
+        return updated.map((offer) => ({
+          ...offer,
+          apport: 5000,
+          duree: 36,
+          kmAn: 10000,
+        }))
+      } else {
+        updated[activeIndex] = {
+          ...updated[activeIndex],
+          apport: 5000,
+          duree: 36,
+          kmAn: 10000,
+        }
+        return updated
+      }
+    })
+  }
+
+  const handleAlign = () => {
+    const { apport, duree, kmAn } = currentOffer
+    setOffers((prev) =>
+      prev.map((offer) => ({
+        ...offer,
+        apport,
+        duree,
+        kmAn,
+      })),
+    )
+  }
+
+  const updateSliderValue = (key: 'apport' | 'duree' | 'kmAn', value: number) => {
+    setOffers((prev) =>
+      prev.map((offer, idx) => (idx === activeIndex ? { ...offer, [key]: value } : offer)),
+    )
+  }
 
   return (
     <div className="financement-page">
@@ -105,44 +169,48 @@ export default function FinancementPage() {
         <div className="offers-section">
           <h2>Offres et options disponibles</h2>
           <FinancingTabs
-            offers={offersToShow.map((offer) => ({
+            offers={offers.map((offer) => ({
               ...offer,
               subtitle: `${offer.price}€/mois TTC`,
             }))}
             activeIndex={activeIndex}
             onChange={setActiveIndex}
           />
-          <div className="sliders">
-            <SliderInput
-              label="Apport"
-              unit="€"
-              min={0}
-              max={30000}
-              step={500}
-              defaultValue={apport}
-              onChange={setApport}
-            />
-            <SliderInput
-              label="Durée"
-              unit="mois"
-              min={12}
-              max={60}
-              step={1}
-              defaultValue={duree}
-              onChange={setDuree}
-            />
-            <SliderInput
-              label="Km/an"
-              unit="Km"
-              min={5000}
-              max={30000}
-              step={1000}
-              defaultValue={kmAn}
-              onChange={setKmAn}
-            />
+
+          <div className="finance-layout">
+            <div className="side-by-side">
+              <SliderPanel
+                apport={currentOffer.apport}
+                duree={currentOffer.duree}
+                kmAn={currentOffer.kmAn}
+                onChangeApport={(val) => updateSliderValue('apport', val)}
+                onChangeDuree={(val) => updateSliderValue('duree', val)}
+                onChangeKmAn={(val) => updateSliderValue('kmAn', val)}
+                onReset={handleReset}
+                onAlign={handleAlign}
+              />
+              <OfferOptions
+                options={currentOptions}
+                selectedOptions={selectedOptions}
+                onToggleOption={(label) => {
+                  setSelectedOptions((prev) =>
+                    prev.includes(label) ? prev.filter((o) => o !== label) : [...prev, label],
+                  )
+                }}
+                onSelectAll={() => setSelectedOptions([...currentOptions])}
+                onReset={() => setSelectedOptions([])}
+              />
+            </div>
+
+            <div className="offer-box">
+              <OfferInfoBox {...currentOffer} />
+            </div>
           </div>
 
-          <FinancingOffer {...offersToShow[activeIndex]} />
+          <div className="offer-bottom-row">
+            <OfferDescriptionBox />
+            <OfferFooterActions />
+          </div>
         </div>
       )}
     </div>
