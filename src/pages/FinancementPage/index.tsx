@@ -11,7 +11,7 @@ import OfferDescriptionBox from '../../components/Financing/OfferDescriptionBox'
 import Modal from '../../components/Modal'
 
 import './styles.scss'
-const RESET_ALL = true
+const RESET_ALL = false
 
 type Offer = {
   title: string
@@ -29,6 +29,7 @@ export default function FinancementPage() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
   const [showModal, setShowModal] = useState(false)
+  const [alignTargetIndex, setAlignTargetIndex] = useState<number | null>(null)
 
   const [offersPrivate, setOffersPrivate] = useState<Offer[]>([
     {
@@ -126,18 +127,6 @@ export default function FinancementPage() {
     })
   }
 
-  const handleAlign = () => {
-    const { apport, duree, kmAn } = currentOffer
-    setOffers((prev) =>
-      prev.map((offer) => ({
-        ...offer,
-        apport,
-        duree,
-        kmAn,
-      })),
-    )
-  }
-
   const updateSliderValue = (key: 'apport' | 'duree' | 'kmAn', value: number) => {
     setOffers((prev) =>
       prev.map((offer, idx) => (idx === activeIndex ? { ...offer, [key]: value } : offer)),
@@ -189,8 +178,12 @@ export default function FinancementPage() {
                 onChangeDuree={(val) => updateSliderValue('duree', val)}
                 onChangeKmAn={(val) => updateSliderValue('kmAn', val)}
                 onReset={handleReset}
-                onAlign={handleAlign}
+                offers={offers}
+                currentIndex={activeIndex}
+                alignTargetIndex={alignTargetIndex}
+                setAlignTargetIndex={setAlignTargetIndex}
               />
+
               <OfferOptions
                 options={currentOptions}
                 selectedOptions={selectedOptions}

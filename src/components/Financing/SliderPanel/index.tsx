@@ -1,8 +1,16 @@
 // src/components/Financing/SliderPanel.tsx
 import SliderInput from '../../SliderInput'
 import Button from '../../Button'
+import Select from '../../Select'
+import { RefreshCcw } from 'lucide-react'
 import './styles.scss'
-import { RefreshCcw, SlidersHorizontal } from 'lucide-react'
+
+type Offer = {
+  title: string
+  apport: number
+  duree: number
+  kmAn: number
+}
 
 type Props = {
   apport: number
@@ -12,7 +20,10 @@ type Props = {
   onChangeDuree: (val: number) => void
   onChangeKmAn: (val: number) => void
   onReset: () => void
-  onAlign: () => void
+  offers: Offer[]
+  currentIndex: number
+  alignTargetIndex: number | null
+  setAlignTargetIndex: (index: number | null) => void
 }
 
 export default function SliderPanel({
@@ -23,7 +34,10 @@ export default function SliderPanel({
   onChangeDuree,
   onChangeKmAn,
   onReset,
-  onAlign,
+  offers,
+  currentIndex,
+  alignTargetIndex,
+  setAlignTargetIndex,
 }: Props) {
   return (
     <div className="slider-panel">
@@ -63,10 +77,20 @@ export default function SliderPanel({
             <RefreshCcw size={14} />
             RESET
           </Button>
-          <Button size="small" outline onClick={onAlign}>
-            <SlidersHorizontal size={14} />
-            ALIGN
-          </Button>
+          <Select
+            options={offers.map((o, index) => ({ label: o.title, value: index }))}
+            value={alignTargetIndex ?? undefined}
+            placeholder="ALIGN"
+            disabledValue={currentIndex}
+            onChange={(targetIndex) => {
+              const index = Number(targetIndex)
+              const target = offers[index]
+              onChangeApport(target.apport)
+              onChangeDuree(target.duree)
+              onChangeKmAn(target.kmAn)
+              setAlignTargetIndex(null)
+            }}
+          />
         </div>
       </div>
     </div>
