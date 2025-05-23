@@ -1,6 +1,5 @@
-// src/components/SliderInput/index.tsx
-import { Minus, Plus } from 'lucide-react'
 import './styles.scss'
+import { Minus, Plus } from 'lucide-react'
 
 type SliderInputProps = {
   label: string
@@ -21,6 +20,20 @@ export default function SliderInput({
   value,
   onChange,
 }: SliderInputProps) {
+  const handleDecrease = () => {
+    const newValue = Math.max(min, value - step)
+    onChange(newValue)
+  }
+
+  const handleIncrease = () => {
+    const newValue = Math.min(max, value + step)
+    onChange(newValue)
+  }
+
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(Number(e.target.value))
+  }
+
   return (
     <div className="slider-input">
       <div className="slider-input__label">
@@ -30,16 +43,20 @@ export default function SliderInput({
         </span>
       </div>
       <div className="slider-input__control">
-        <Minus size={16} />
+        <button type="button" onClick={handleDecrease} className="slider-input__btn">
+          <Minus size={16} />
+        </button>
         <input
           type="range"
           min={min}
           max={max}
           step={step}
           value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
+          onChange={handleSliderChange}
         />
-        <Plus size={16} />
+        <button type="button" onClick={handleIncrease} className="slider-input__btn">
+          <Plus size={16} />
+        </button>
       </div>
     </div>
   )
