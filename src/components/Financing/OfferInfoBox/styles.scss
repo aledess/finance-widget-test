@@ -6,9 +6,10 @@
   padding: 2rem;
   border: 2px solid var(--primary-color);
   border-radius: 1rem;
-  background-color: color-mix(in srgb, var(--primary-color) 5%, white);
+  background-color: color-mix(in srgb, var(--primary-color) 5%, var(--white));
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   width: 100%;
+
   .offer-info-main {
     display: flex;
     flex-direction: column;
@@ -50,21 +51,21 @@
     &-sub {
       font-size: 1.2rem;
       font-weight: 400;
-      color: #444;
+      color: var(--text-secondary);
       margin-left: 0.4rem;
     }
   }
 
   .offer-details {
     font-size: 1.1rem;
-    color: #333;
+    color: var(--text-secondary);
     margin-top: 1rem;
   }
 
   .offer-redemption {
     font-size: 1.05rem;
     font-weight: 500;
-    color: #222;
+    color: var(--text-primary);
     margin-top: 0.75rem;
   }
 

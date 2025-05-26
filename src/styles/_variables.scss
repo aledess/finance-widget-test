@@ -1,21 +1,48 @@
 @use 'sass:map';
 
-// Palette colore base
+// 🎨 Palette colore base (personalizzabile dall'esterno)
 $colors: (
   primary: #308276,
-  secondary: #a0d7a2,
-  tertiary: #e30071,
-  font: 'Inter, sans-serif',
+  secondary: #e30071,
+  tertiary: #fefefe,
+
+  // usato come surface (sfondo interno)
+  // Colori funzionali
+  white: #ffffff,
+  // sfondo base per card o box
+  border-color: #e0e0e0,
+
+  // grigio chiaro per bordi
+  // Tipografia
+  text-primary: #222,
+  // quasi nero
+  text-secondary: #666,
+  // grigio medio
+  text-muted: #888,
+
+  // grigio chiaro
+  font: 'Inter, sans-serif', // font di sistema
 );
 
-// Esporti la mappa per usarla nei componenti SCSS se serve
+// ✅ Esporta la mappa per uso nei componenti SCSS
 $theme: $colors;
 
-// Inietti le CSS variables nel root (dev) e :host (widget)
+// ✅ Inietti le CSS variables nel root o :host (Shadow DOM)
 :root,
 :host {
+  // Colori base
   --primary-color: #{map.get($colors, primary)};
   --secondary-color: #{map.get($colors, secondary)};
   --tertiary-color: #{map.get($colors, tertiary)};
+  --surface-color: var(--tertiary-color); // alias per coerenza
+
+  // Colori accessori
+  --white: #{map.get($colors, white)};
+  --border-color: #{map.get($colors, border-color)};
+
+  // Tipografia
+  --text-primary: #{map.get($colors, text-primary)};
+  --text-secondary: #{map.get($colors, text-secondary)};
+  --text-muted: #{map.get($colors, text-muted)};
   --font-family: #{map.get($colors, font)};
 }

@@ -94,8 +94,8 @@ class FinanceWidget extends HTMLElement {
     vars.textContent = `
     :host {
       --primary-color: ${this.styleConfig.primaryColor || '#308276'} !important;
-      --secondary-color: ${this.styleConfig.secondaryColor || '#A0D7A2'} !important;
-      --tertiary-color: ${this.styleConfig.tertiaryColor || '#E30071'} !important;
+      --secondary-color: ${this.styleConfig.secondaryColor || '#E30071'} !important;
+      --tertiary-color: ${this.styleConfig.tertiaryColor || '#fefefe'} !important;
       --font-family: ${this.styleConfig.fontFamily || 'Inter, sans-serif'} !important;
     }
   `

@@ -12,9 +12,11 @@
   gap: 0.5rem;
   min-width: 100px;
 
+  // === Varianti base ===
+
   &--primary {
     background-color: var(--primary-color);
-    color: #fff;
+    color: color-mix(in srgb, white 95%, var(--primary-color)); // ✅ leggibile su sfondo scuro
 
     &:hover {
       background-color: color-mix(in srgb, var(--primary-color) 85%, black);
@@ -23,21 +25,14 @@
 
   &--secondary {
     background-color: var(--secondary-color);
-    color: #fff;
+    color: color-mix(in srgb, white 95%, var(--secondary-color)); // ✅ leggibile su ogni tono
 
     &:hover {
       background-color: color-mix(in srgb, var(--secondary-color) 85%, black);
     }
   }
 
-  &--tertiary {
-    background-color: var(--tertiary-color);
-    color: #fff;
-
-    &:hover {
-      background-color: color-mix(in srgb, var(--tertiary-color) 85%, black);
-    }
-  }
+  // === Outline ===
 
   &--outline {
     background-color: transparent !important;
@@ -62,14 +57,7 @@
     }
   }
 
-  &--tertiary.btn--outline {
-    color: var(--tertiary-color);
-    border-color: var(--tertiary-color);
-
-    &:hover {
-      background-color: color-mix(in srgb, var(--tertiary-color) 10%, white);
-    }
-  }
+  // === Size variants ===
 
   &--small {
     font-size: 0.8rem;
@@ -93,8 +81,11 @@
     svg {
       width: 1.2rem;
       height: 1.2rem;
+      fill: currentColor;
     }
   }
+
+  // === Stato disabilitato ===
 
   &:disabled {
     opacity: 0.6;

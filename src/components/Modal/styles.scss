@@ -9,7 +9,7 @@
 }
 
 .modal-content {
-  background: white;
+  background: var(--white); // ✅ usa colore neutro definito
   border-radius: 12px;
   width: 90%;
   max-width: 60%;
@@ -25,7 +25,7 @@
   position: relative;
   padding: 1rem 1.5rem;
   background-color: var(--primary-color);
-  color: #fff;
+  color: color-mix(in srgb, white 95%, var(--primary-color)); // ✅ adattivo
   font-size: 1.25rem;
   font-weight: 600;
   display: flex;
@@ -37,7 +37,7 @@
 .modal-close {
   background: transparent;
   border: none;
-  color: #fff;
+  color: inherit; // ✅ segue il colore del titolo
   cursor: pointer;
   padding: 0.25rem;
 
@@ -46,13 +46,17 @@
     height: 1.5rem;
     stroke: currentColor;
   }
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .modal-body {
   padding: 1.5rem;
   overflow-y: auto;
   font-size: 0.95rem;
-  color: #333;
   line-height: 1.6;
   flex: 1;
+  color: var(--text-primary); // ✅ testuale coerente
 }

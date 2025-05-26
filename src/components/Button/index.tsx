@@ -4,10 +4,10 @@ import clsx from 'clsx'
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode
-  variant?: 'primary' | 'secondary' | 'tertiary'
+  variant?: 'primary' | 'secondary'
   size?: 'default' | 'small' | 'large'
   iconOnly?: boolean
-  outline?: boolean // 👈 nuova prop
+  outline?: boolean
 }
 
 export default function Button({

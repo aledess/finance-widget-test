@@ -1,10 +1,10 @@
-/* src/components/CustomCheckbox/styles.module.scss */
 .custom-checkbox {
   display: flex;
   align-items: center;
   cursor: pointer;
   gap: 0.5rem;
   font-size: 0.95rem;
+  color: var(--text-primary);
 
   input {
     display: none;
@@ -16,14 +16,17 @@
     border: 2px solid var(--primary-color);
     border-radius: 0.25rem;
     position: relative;
-    background: white;
+    background: var(--white); // ✅ coerente con il resto
     transition:
-      background 0.2s,
-      border-color 0.2s;
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   &.checked &__box {
     background: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 50%, white); // ✅ leggero highlight
   }
 
   &.checked &__box::after {
@@ -33,12 +36,19 @@
     left: 5px;
     width: 4px;
     height: 8px;
-    border: solid white;
+    border: solid color-mix(in srgb, white 95%, var(--primary-color)); // ✅ adattivo su qualsiasi tono
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }
 
   &__label {
     user-select: none;
+    color: inherit;
+  }
+
+  // Accessibilità: focus visivo per tastiera (opzionale)
+  &:focus-within &__box {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 3px;
   }
 }

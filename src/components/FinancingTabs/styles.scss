@@ -1,4 +1,3 @@
-/* src/components/FinancingTabs/styles.module.scss */
 .financing-tabs {
   &__nav {
     display: flex;
@@ -11,8 +10,8 @@
     text-align: center;
     padding: 1.25rem 1rem;
     border: 1px solid var(--primary-color);
-    background: white;
-    color: var(--primary-color);
+    background: var(--surface-color);
+    color: var(--text-primary);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -26,21 +25,23 @@
     min-height: 100px;
 
     &.active {
-      background-color: var(--tertiary-color);
-      color: white;
-      border: none;
+      background-color: var(--secondary-color);
+      color: color-mix(in srgb, white 95%, var(--secondary-color)); // ✅ adattivo e leggibile
+      border: 1px solid var(--secondary-color); // più coerente di "none"
     }
 
     .title {
       font-size: 1.05rem;
       font-weight: 600;
       margin-bottom: 0.25rem;
+      color: inherit;
     }
 
     .subtitle {
       font-size: 0.9rem;
       font-weight: 500;
       opacity: 0.75;
+      color: inherit; // ✅ migliora coerenza con il colore del tab attivo
     }
   }
 

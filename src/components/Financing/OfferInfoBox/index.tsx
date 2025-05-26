@@ -42,7 +42,7 @@ export default function OfferInfoBox({
       </div>
 
       <div className="offer-recalc">
-        <Button variant="secondary" onClick={handleRecalculate}>
+        <Button variant="primary" outline onClick={handleRecalculate}>
           RÉCALCULER
         </Button>
       </div>
