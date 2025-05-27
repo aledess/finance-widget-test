@@ -1,6 +1,7 @@
 .slider-panel {
   .slider-layout {
     display: flex;
+    flex-direction: column;
     gap: 2rem;
     align-items: stretch; // matcha altezza di OfferOptions
   }
@@ -14,7 +15,7 @@
 
   .sliders-actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center; // 💡 centra verticalmente rispetto all’intero layout
     align-items: center;
     gap: 1rem;

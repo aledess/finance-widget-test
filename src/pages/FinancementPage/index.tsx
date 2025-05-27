@@ -11,6 +11,7 @@ import OfferDescriptionBox from '../../components/Financing/OfferDescriptionBox'
 import Modal from '../../components/Modal'
 
 import './styles.scss'
+
 const RESET_ALL = false
 
 type Offer = {
@@ -137,6 +138,7 @@ export default function FinancementPage() {
     <div className="financement-page">
       <PageHeader breadcrumbs={[{ label: 'Home', path: '/' }, { label: 'Financement' }]} />
       <h1>Sélectionnez votre profil</h1>
+
       <div className="profile-options">
         <div
           className={`profile-card ${selectedProfile === 'private' ? 'selected' : ''}`}
@@ -146,6 +148,7 @@ export default function FinancementPage() {
           <h2>Usage privé</h2>
           <p>Particulier ou professionnel pour un usage privé</p>
         </div>
+
         <div
           className={`profile-card ${selectedProfile === 'company' ? 'selected' : ''}`}
           onClick={() => handleProfileSelect('company')}
@@ -159,6 +162,7 @@ export default function FinancementPage() {
       {selectedProfile && (
         <div className="offers-section">
           <h2>Offres et options disponibles</h2>
+
           <FinancingTabs
             offers={offers.map((offer) => ({
               ...offer,
@@ -197,20 +201,20 @@ export default function FinancementPage() {
               />
             </div>
 
-            <div className="offer-box">
+            <div className="offer-summary">
+              <OfferDescriptionBox />
               <OfferInfoBox {...currentOffer} onInfoClick={() => setShowModal(true)} />
               <Modal
                 open={showModal}
                 onClose={() => setShowModal(false)}
                 title="Détails de l'offre"
               >
-                <p>Contenu della modale con dettagli dell’offerta...</p>
+                <p>Contenu de la modale avec les détails de l’offre...</p>
               </Modal>
             </div>
           </div>
 
           <div className="offer-bottom-row">
-            <OfferDescriptionBox />
             <OfferFooterActions />
           </div>
         </div>

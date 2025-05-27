@@ -1,3 +1,5 @@
+// src/pages/FinancementPage/styles.scss
+
 .financement-page {
   max-width: 1000px;
   margin: 0 auto;
@@ -84,134 +86,41 @@
       }
     }
 
-    .offer-box {
-      align-self: flex-start;
-      max-width: 600px;
-      width: 100%;
-    }
-  }
-
-  .offer-bottom-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10rem;
-
-    .offer-description-box {
-      flex: 1;
-    }
-
-    .offer-footer-actions {
-      flex-shrink: 0;
-    }
-  }
-}
-.financement-page {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  h1,
-  h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-  }
-
-  .profile-options {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-
-    @media (min-width: 700px) {
-      flex-direction: row;
-    }
-  }
-
-  .profile-card {
-    flex: 1;
-    border: 2px solid var(--border-color);
-    border-radius: 1rem;
-    padding: 2rem 1.5rem;
-    cursor: pointer;
-    background: var(--white); // ✅ sempre bianco per leggibilità
-    text-align: center;
-    transition:
-      border-color 0.2s,
-      background-color 0.2s;
-    color: var(--text-primary);
-
-    h2 {
-      margin: 1rem 0 0.5rem;
-      font-size: 1.3rem;
-      color: inherit;
-    }
-
-    p {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-    }
-
-    &:hover {
-      border-color: var(--primary-color);
-    }
-
-    &.selected {
-      background-color: var(--primary-color);
-      color: color-mix(in srgb, white 90%, var(--primary-color)); // ✅ adattivo
-      border-color: var(--primary-color);
-
-      h2,
-      p {
-        color: inherit;
-      }
-    }
-  }
-
-  .offers-section {
-    margin-top: 2rem;
-  }
-
-  .finance-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 2rem;
-
-    .side-by-side {
+    .offer-summary {
       display: flex;
       gap: 2rem;
-      align-items: stretch;
-
-      .slider-panel {
-        flex: 2;
-      }
-
-      .offer-options-box {
-        flex: 1;
-      }
-    }
-
-    .offer-box {
-      align-self: flex-start;
-      max-width: 600px;
       width: 100%;
+      margin-top: 2rem;
+
+      .offer-description-box,
+      .offer-info-box {
+        flex: 1;
+        margin-top: 0;
+      }
     }
   }
 
   .offer-bottom-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     gap: 10rem;
+    margin-top: 46px;
+  }
+}
 
-    .offer-description-box {
-      flex: 1;
-    }
+.offer-description-box {
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
 
-    .offer-footer-actions {
-      flex-shrink: 0;
-    }
+  p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
   }
 }
