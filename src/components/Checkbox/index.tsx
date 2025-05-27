@@ -2,7 +2,7 @@
 import './styles.scss'
 
 type CheckboxProps = {
-  label: string
+  label: React.ReactNode | string
   checked?: boolean
   onChange?: (checked: boolean) => void
 }

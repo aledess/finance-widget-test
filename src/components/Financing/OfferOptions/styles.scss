@@ -1,8 +1,8 @@
 .offer-options-box {
   flex: 1;
-  background: var(--surface-color); // ✅ sfondo coerente
+  background: var(--surface-color);
   padding: 1rem;
-  border: 1px solid var(--border-color); // ✅ bordo coerente
+  border: 1px solid var(--border-color);
   border-radius: 1rem;
 
   .options-header {
@@ -15,7 +15,7 @@
       font-size: 1rem;
       font-weight: 600;
       margin: 0;
-      color: var(--text-primary); // ✅ testo leggibile
+      color: var(--text-primary);
     }
 
     .options-actions {
@@ -34,7 +34,7 @@
         transition: background-color 0.2s ease;
 
         svg {
-          stroke: var(--primary-color); // ✅ mantiene accento
+          stroke: var(--primary-color);
         }
 
         &:hover {
@@ -53,6 +53,41 @@
       margin-bottom: 0.5rem;
       color: var(--text-primary);
       font-size: 0.95rem;
+
+      .option-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+
+        .option-info-button {
+          background: transparent;
+          border: none;
+          padding: 0.25rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          border-radius: 0.25rem;
+
+          svg {
+            stroke: var(--primary-color);
+          }
+
+          &:hover {
+            background-color: color-mix(in srgb, var(--primary-color) 10%, white);
+          }
+        }
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+
+          .option-price {
+            color: var(--primary-color);
+          }
+        }
+      }
     }
   }
 }
